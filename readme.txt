@@ -21,6 +21,19 @@ Provisioner
  - from CI/CD tools
 
  Provisioner failed 
+ it will shoes the error on terraform
+
+ ===================================
+
+ Modules 
+ conatiner for multiple resource, used togheter 
+ 
+without Modules
+complex configuration
+huge file
+no overview
+
+
  
 
 
