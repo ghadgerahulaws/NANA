@@ -1,0 +1,19 @@
+craete repo on the git hub
+at clien end step as follows
+
+git init
+git remote add origin https://github.com/ghadgerahulaws/NANA.git
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git push -u origin main
+
+=============================
+
+how to create feature branch from the main branch and how to link with github from the client end
+
+git checkout -b feature/deploy-to-ec2
+  git branch
+  git add .
+  git commit -m "add ec2"
+  git push --set-upstream origin feature/deploy-to-ec2

@@ -1,3 +1,5 @@
 .terraform/*
 *.tfstate.*
 *.tfvars
+terra.pub
+terra
