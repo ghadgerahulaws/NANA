@@ -137,7 +137,7 @@ resource "aws_instance" "myapp-ec2" {
 
 
       #for small data we can write this way
-    /*user_data = <<EOF
+    /*user_data = <<-EOF
                 #!/bin/bash
                 sudo yum update -y && yum install -y docker
                 sudo systemctl start docker
@@ -146,7 +146,39 @@ resource "aws_instance" "myapp-ec2" {
 
                 EOF
                 */
-      user_data = file("bash_userdata_script.sh")
+      # user_data = file("bash_userdata_script.sh")
+#run command once the server is created 
+      connection {
+        type = "ssh"
+        host = self.public_ip  #self represent the resource name inside this connection write
+        user = "ec2-user"
+        private_key = file("terra")
+      }
+      /*provisioner "remote-exec" {
+        inline = [ 
+          "export ENV=dev",
+          "mkdir newdir"
+         ]
+        
+      }*/
+
+      #copy files local to server
+        provisioner "file" {
+        source = "bash_userdata_script.sh"
+        destination = "/home/ec2-user/bash_userdata_script.sh"
+        
+        #run script on the server file already exsit on the server 
+      }
+      provisioner "remote-exec" {
+        script = file("bash_scrit.sh")
+      }
+
+      #it will run on local system and show the output
+      provisioner "local-exec" {
+        command = "echo ${self.public_ip}"
+        
+      }
+      
 
     tags = {
       Name: "${var.env_prefix}-ec2"
