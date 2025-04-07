@@ -1,4 +1,10 @@
-output "aws_ami" {
-  value = data.aws_ami.latest-amazon-ami
-  
+
+output "public_ip" {
+  value = module.myapp-server
 }
+
+/*output "public_ip" {
+  value = module.myapp-server.public_ip
+}*/
+
+
